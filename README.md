@@ -49,3 +49,9 @@ https://github.com/cerebral/url-mapper
 https://github.com/erikras/react-redux-universal-hot-example
 and links there to
 https://github.com/erikras/react-redux-universal-hot-example/blob/master/docs/InlineStyles.md
+
+  JS Generators performance
+https://spion.github.io/posts/analysis-generators-and-other-async-patterns-node.html
+
+es6 comparisions
+https://kangax.github.io/compat-table/es6/
