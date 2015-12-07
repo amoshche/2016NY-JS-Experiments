@@ -6,7 +6,7 @@ import htmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
     debug: true,
-    devtool: 'source-map',
+    //context: path.resolve(__dirname,'src'),
     entry:{
         common:'babel-polyfill',
         main:['./src/index','webpack-hot-middleware/client'],
@@ -21,13 +21,13 @@ export default {
         loaders: [
           {
               test: /\.less$/,
-              loader: //extractTextPlugin.extract(
+              loader: extractTextPlugin.extract(
                 // activate source maps via loader query
                 // 'autoprefixer?sourceMap!' +
-                'style!' +
+                //'style!' +
                 'css?sourceMap!' +
                 'less?sourceMap'
-              //)
+              )
           },
           {
             loader: 'babel-loader',
@@ -50,14 +50,22 @@ export default {
                 }]
               ],
               presets: ['es2015', 'react'],
+              sourceRoot: './'
             }
           }
         ]
     },
     plugins: [
         new cleanWebpackPlugin([path.resolve(__dirname,'dist')]),
+        new webpack.SourceMapDevToolPlugin({
+            filename: '[file].map',
+            moduleFilenameTemplate: 'webpack:///[resourcePath]',
+            fallbackModuleFilenameTemplate: 'webpack:///[resourcePath]?[hash]'
+//            moduleFilenameTemplate: 'webpack:///[absolute-resource-path]',
+//            fallbackModuleFilenameTemplate: 'webpack:///[absolute-resource-path]?[hash]'
+        }),
         new webpack.HotModuleReplacementPlugin(),
-        //new extractTextPlugin('[name].css'),
+        new extractTextPlugin('[name].css'),
         new htmlWebpackPlugin({
             template: './src/index.html',
             inject: 'body'

@@ -14,7 +14,7 @@ bs.init({
 	logFileChanges: false,
 	middleware: [
 		webpackDevMiddleware(bundler, {
-			noInfo: false,
+			noInfo: true,
 			stats: { colors: true },
 			publicPath: webpackConfig.output.publicPath
 		}),
